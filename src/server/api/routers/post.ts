@@ -163,35 +163,30 @@ export const postRouter = createTRPCRouter({
         }
 
       }),
-  getProjects: publicProcedure.input(z.object({})).query(
-    async () => {
-      const projectRef = db.collection('projects');
-      const projectsSnapshot = await projectRef.get();
+  getProjects: publicProcedure
+    .input(z.object({}))
+    .query(async () => {
       const projectList: AppProject[] = [];
 
-      await Promise.all(projectsSnapshot.docs.map(async projectDoc => {
-        const journeysRef = projectDoc.ref.collection('journeys');
-        const snapshot = await journeysRef.get();
+      // Perform a collection group query to fetch all 'journeys' collections
+      const querySnapshot = await db.collectionGroup('journeys').get();
 
-        snapshot.forEach(element => {
-          const id = element.id; // Get the document ID
-          const data = element.data() as AppProject;
-          const project: AppProject = {
-            docid: id,
-            title: data.title,
-            imgTitle: data.imgTitle,
-            imageUrl: data.imageUrl,
-            description: data.description,
-            budget: data.budget,
-            startDate: data.startDate,
-            endDate: data.endDate,
-            interest: data.interest // Optional property
-          };
-          projectList.push(project);
-        });
-      }));
-
+      // Process each document found in the collection group query
+      querySnapshot.forEach(doc => {
+        const data = doc.data() as AppProject;
+        const project: AppProject = {
+          docid: doc.id,
+          title: data.title,
+          imgTitle: data.imgTitle,
+          imageUrl: data.imageUrl,
+          description: data.description,
+          budget: data.budget,
+          startDate: data.startDate,
+          endDate: data.endDate,
+          interest: data.interest // Optional property
+        };
+        projectList.push(project);
+      });
       return projectList;
-    }
-  )
+    })
 });
