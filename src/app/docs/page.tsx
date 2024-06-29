@@ -35,14 +35,14 @@ export default function DocsBoard() {
                                 <FileText size={25} />
                             </div>
                             <h3 className="mb-2 text-xl font-bold ">Fill in the details</h3>
-                            <p className="text-gray-700 ">Just key in your details with the google forms url in the description. We use unsplash to generate Image so you don't need to fret </p>
+                            <p className="text-gray-700 ">Just key in your details with the google forms url in the description. We use unsplash to generate Image so you do not need to fret </p>
                         </div>
                         <div>
                             <div className="flex justify-center items-center mb-4 w-10 h-10 rounded-full bg-primary-100 lg:h-12 lg:w-12 dark:bg-primary-900">
                                 <Edit size={25} />
                             </div>
                             <h3 className="mb-2 text-xl font-bold ">Basic Create, Read , Write , Delete for your posts</h3>
-                            <p className="text-gray-700 ">If you don't like the image, you can always edit or if you are satisfied or no longer require the project you can always delete</p>
+                            <p className="text-gray-700 ">If you do not like the image, you can always edit or if you are satisfied or no longer require the project you can always delete</p>
                         </div>
                     </div>
                 </div>

@@ -164,17 +164,13 @@ export const postRouter = createTRPCRouter({
 
       }),
   getProjects: publicProcedure.input(z.object({})).query(
-    async ({ ctx }) => {
-      const uid = ctx.headers.get('x-user-id') ?? "orphan";
+    async () => {
       const projectRef = db.collection('projects');
       const projectsSnapshot = await projectRef.get();
-      const projectList: AppProject[] | PromiseLike<AppProject[]> = [];
+      const projectList: AppProject[] = [];
 
-      projectsSnapshot.forEach(async projectDoc => {
-        const uid = projectDoc.id;
+      await Promise.all(projectsSnapshot.docs.map(async projectDoc => {
         const journeysRef = projectDoc.ref.collection('journeys');
-
-        // Fetch documents under the 'journeys' subcollection for the current user
         const snapshot = await journeysRef.get();
 
         snapshot.forEach(element => {
@@ -193,7 +189,8 @@ export const postRouter = createTRPCRouter({
           };
           projectList.push(project);
         });
-      });
+      }));
+
       return projectList;
     }
   )
