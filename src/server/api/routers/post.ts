@@ -67,7 +67,6 @@ export const postRouter = createTRPCRouter({
       const newProjectRef = db.collection('projects').doc(uid).collection('journeys');
       try {
         const imageUrl = await getRandomPhotoUrl(input.imgTitle);
-        console.log(imageUrl);
         await newProjectRef.add({ ...input, imageUrl });
         console.log(`${input.title} saved to db`)
         return { "status": "OK", "message": `OK project ${input.title} Created` };
@@ -92,7 +91,6 @@ export const postRouter = createTRPCRouter({
       const newProjectRef = db.collection('projects').doc(uid).collection('journeys').doc(input.docid);
       try {
         const imageUrl = await getRandomPhotoUrl(input.imgTitle);
-        console.log(imageUrl);
         await newProjectRef.set({ ...input, imageUrl });
         console.log(`${input.title} saved to db`)
         return { "status": "OK", "message": `OK project ${input.title} Created` };
@@ -167,7 +165,6 @@ export const postRouter = createTRPCRouter({
       }),
   getProjects: publicProcedure.input(z.object({})).query(
     async ({ ctx }) => {
-      console.log("called getProjects")
       const uid = ctx.headers.get('x-user-id') ?? "orphan";
       const projectRef = db.collection('projects').doc(uid).collection('journeys');
       const snapshot = await projectRef.get();
