@@ -93,10 +93,10 @@ export const postRouter = createTRPCRouter({
         const imageUrl = await getRandomPhotoUrl(input.imgTitle);
         await newProjectRef.set({ ...input, imageUrl });
         console.log(`${input.title} saved to db`)
-        return { "status": "OK", "message": `OK project ${input.title} Created` };
+        return { "status": "OK", "message": `OK project ${input.title} Edited` };
       } catch (e) {
         console.error(e);
-        return { "status": "Error", "message": `Error project ${input.title} Not Created` };
+        return { "status": "Error", "message": `Error project ${input.title} Not Edited` };
       }
 
     }),
