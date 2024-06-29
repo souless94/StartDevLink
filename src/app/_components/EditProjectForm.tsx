@@ -86,10 +86,10 @@ export const EditProjectForm = () => {
   // Handle loading state or errors
   if (isLoading) {
     return <Progress
-    size="lg"
+    size="md"
     isIndeterminate
     aria-label="Loading..."
-    className="max-w-md"
+    className="max-w-full"
   />;
   }
 

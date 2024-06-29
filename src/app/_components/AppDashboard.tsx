@@ -18,11 +18,11 @@ export function AppDashBoard() {
     // Handle loading state or errors
     if (isLoading) {
         return <Progress
-            size="lg"
-            isIndeterminate
-            aria-label="Loading..."
-            className="max-w-md"
-        />;
+        size="md"
+        isIndeterminate
+        aria-label="Loading..."
+        className="max-w-full"
+      />;
     }
 
 
