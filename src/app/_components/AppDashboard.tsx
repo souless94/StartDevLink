@@ -1,4 +1,4 @@
-import { Input, Button, Link, Spacer, Card, CardBody, CardFooter, Image } from "@nextui-org/react";
+import { Input, Button, Link, Spacer, Card, CardBody, CardFooter, Image, Progress } from "@nextui-org/react";
 import { useState } from "react";
 import { Codepen } from "react-feather";
 import { api } from "~/trpc/react";
@@ -10,10 +10,20 @@ import { Edit3 } from 'react-feather';
 export function AppDashBoard() {
 
     const [searchText, setsearchText] = useState("");
-    const { data: projectList } = api.post.getProjects.useQuery({});
+    const { data: projectList, isLoading } = api.post.getProjects.useQuery({});
     const filteredData = projectList?.filter((el) => {
         return el.title.toLowerCase().includes(searchText.toLowerCase())
     });
+
+    // Handle loading state or errors
+    if (isLoading) {
+        return <Progress
+            size="lg"
+            isIndeterminate
+            aria-label="Loading..."
+            className="max-w-md"
+        />;
+    }
 
 
     return (
@@ -54,13 +64,13 @@ export function AppDashBoard() {
                         </CardBody>
                         <CardFooter className="flex justify-center text-small">
                             <p className="text-default-500">{project.description}</p>
-                            <Spacer x={2} y={2}/>
-                            <Button variant="ghost" color="primary" size="sm" as={Link} href={"/dashboard/edit/"+project.docid} startContent={<Edit3/>}>Edit</Button>
+                            <Spacer x={2} y={2} />
+                            <Button variant="ghost" color="primary" size="sm" as={Link} href={"/dashboard/edit/" + project.docid} startContent={<Edit3 />}>Edit</Button>
                         </CardFooter>
                     </Card>
                 )) : <div className="justify-center items-center font-bold">No projects found</div>}
             </section>
-            
+
         </div>
 
     );
