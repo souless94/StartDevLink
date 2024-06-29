@@ -27,12 +27,10 @@ export const EditProjectForm = () => {
   });
 
   const deleteProjectHandler = () => {
+    deleteProject.mutate({ docid: uid });
+    formik.setSubmitting(false);
+    formik.resetForm();
 
-    if (formik.isSubmitting) {
-      deleteProject.mutate({ docid: uid });
-      formik.setSubmitting(false);
-      formik.resetForm();
-    }
   }
   useEffect(() => {
     if (isError || !project || 'status' in project) {
@@ -67,11 +65,10 @@ export const EditProjectForm = () => {
       const endDate = values.end.toDate("Asia/Singapore");
       const { start, end, ...remainValues } = values;
       const inputValues = { ...remainValues, startDate, endDate, docid };
-      if (formik.isSubmitting) {
-        editProject.mutate(inputValues);
-        formik.setSubmitting(false);
-        formik.resetForm();
-      }
+      editProject.mutate(inputValues);
+      formik.setSubmitting(false);
+      formik.resetForm();
+
     },
   });
   useEffect(() => {
