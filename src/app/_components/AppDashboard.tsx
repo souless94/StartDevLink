@@ -29,7 +29,7 @@ export function AppDashBoard() {
     return (
         <div className="h-screen flex flex-col items-center">
             <h2 className="mt-10 mb-4 text-2xl font-bold tracking-tight leading-none md:text-3xl xl:text-3xl dark:text-white">
-                No Journeys yet? Click Here to Get Started
+                Click Here to Get Create a Journey
 
             </h2>
             <div className="mb-4">

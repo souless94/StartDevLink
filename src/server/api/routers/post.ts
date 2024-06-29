@@ -108,7 +108,7 @@ export const postRouter = createTRPCRouter({
       const uid = ctx.headers.get('x-user-id') ?? "orphan";
       const toDeleteProjectRef = db.collection('projects').doc(uid).collection('journeys').doc(input.docid);
       try {
-       
+
         await toDeleteProjectRef.delete();
         console.log(`${input.docid} projected deleted to db`)
         return { "status": "OK", "message": `OK project ${input.docid} Deleted` };
@@ -166,27 +166,35 @@ export const postRouter = createTRPCRouter({
   getProjects: publicProcedure.input(z.object({})).query(
     async ({ ctx }) => {
       const uid = ctx.headers.get('x-user-id') ?? "orphan";
-      const projectRef = db.collection('projects').doc(uid).collection('journeys');
-      const snapshot = await projectRef.get();
+      const projectRef = db.collection('projects');
+      const projectsSnapshot = await projectRef.get();
       const projectList: AppProject[] | PromiseLike<AppProject[]> = [];
-      snapshot.forEach(element => {
-        const id = element.id; // Get the document ID
-        const data = element.data() as AppProject;
-        const project: AppProject = {
-          docid: id,
-          title: data.title,
-          imgTitle: data.imgTitle,
-          imageUrl: data.imageUrl,
-          description: data.description,
-          budget: data.budget,
-          startDate: data.startDate,
-          endDate: data.endDate,
-          interest: data.interest // Optional property
-        };
-        return projectList.push(project);
+
+      projectsSnapshot.forEach(async projectDoc => {
+        const uid = projectDoc.id;
+        const journeysRef = projectDoc.ref.collection('journeys');
+
+        // Fetch documents under the 'journeys' subcollection for the current user
+        const snapshot = await journeysRef.get();
+
+        snapshot.forEach(element => {
+          const id = element.id; // Get the document ID
+          const data = element.data() as AppProject;
+          const project: AppProject = {
+            docid: id,
+            title: data.title,
+            imgTitle: data.imgTitle,
+            imageUrl: data.imageUrl,
+            description: data.description,
+            budget: data.budget,
+            startDate: data.startDate,
+            endDate: data.endDate,
+            interest: data.interest // Optional property
+          };
+          projectList.push(project);
+        });
       });
       return projectList;
-
     }
   )
 });
