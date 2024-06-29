@@ -27,9 +27,12 @@ export const EditProjectForm = () => {
   });
 
   const deleteProjectHandler = () => {
-    deleteProject.mutate({ docid: uid });
-    formik.setSubmitting(false);
-    formik.resetForm();
+
+    if (formik.isSubmitting) {
+      deleteProject.mutate({ docid: uid });
+      formik.setSubmitting(false);
+      formik.resetForm();
+    }
   }
   useEffect(() => {
     if (isError || !project || 'status' in project) {
@@ -64,33 +67,35 @@ export const EditProjectForm = () => {
       const endDate = values.end.toDate("Asia/Singapore");
       const { start, end, ...remainValues } = values;
       const inputValues = { ...remainValues, startDate, endDate, docid };
-      editProject.mutate(inputValues);
-      formik.setSubmitting(false);
-      formik.resetForm();
+      if (formik.isSubmitting) {
+        editProject.mutate(inputValues);
+        formik.setSubmitting(false);
+        formik.resetForm();
+      }
     },
   });
-
   useEffect(() => {
     if (project && !('status' in project)) {
+      // Update Formik values only once when project is valid and doesn't have a 'status' property , hence not putting in the useEffect dependency
       void formik.setValues({
-        title: project.title || "",
-        imgTitle: project.imgTitle || "",
-        description: project.description || "",
-        budget: project.budget || 0,
+        title: project.title ?? "",
+        imgTitle: project.imgTitle ?? "",
+        description: project.description ?? "",
+        budget: project.budget ?? 0,
         start: project.startDate ? parseDate(project.startDate) : today(getLocalTimeZone()),
         end: project.endDate ? parseDate(project.endDate) : today(getLocalTimeZone()),
       });
     }
-  }, [project,formik]);
+  }, [project]);
 
   // Handle loading state or errors
   if (isLoading) {
     return <Progress
-    size="md"
-    isIndeterminate
-    aria-label="Loading..."
-    className="max-w-full"
-  />;
+      size="md"
+      isIndeterminate
+      aria-label="Loading..."
+      className="max-w-full"
+    />;
   }
 
   if (isError || !project || 'status' in project) {
