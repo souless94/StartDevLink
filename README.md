@@ -49,18 +49,18 @@ To get a local copy up and running, follow these simple steps.
    git clone https://github.com/your_username/start-dev-link.git
    ```
 2. Install Yarn packages
- ``` 
- yarn install
- ```
+    ``` 
+    yarn install
+    ```
 3. Set up environment variables
 
 Refer to the .env.example file in the root directory and add your own values.
 
 ### Usage
 1. Run the development server
- ``` 
- yarn dev 
- ```
+    ``` 
+    yarn dev 
+    ```
 2. Open http://localhost:3000 with your browser to see the result.
 
 ### License
