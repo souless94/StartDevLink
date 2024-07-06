@@ -8,7 +8,8 @@ Demo Site: [https://start-dev-link.vercel.app](https://start-dev-link.vercel.app
 
 ## For Founders
 
-Simply key in your details with the Google Forms URL in the description. We use Unsplash to generate images, so you do not need to fret.
+Simply key in your details with the Google Forms URL in the description. 
+For image for the project, key in the imgtitle field to generate images.
 
 ## For Developers
 
