@@ -22,13 +22,6 @@ export async function middleware(
     return NextResponse.next()
   }
 
-  if (request.nextUrl.pathname.startsWith('/api/sentry')) {
-    /**
-     * whitelist sentry example page url
-     */
-    return NextResponse.next()
-  }
-
   return withSession(request, async (err, session) => {
     if (err) {
       return NextResponse.json(err, { status: 500 });
