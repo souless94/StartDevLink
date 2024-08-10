@@ -32,7 +32,7 @@ Browse through the projects and contact the founder if you're interested in coll
 - **Formik**: For form management.
 - **react-hot-toast**: For toast notifications.
 - **react-feather**: For icons.
-- **sentry**: For monitoring.
+- **sentry**: For monitoring application
 
 ## Getting Started
 
