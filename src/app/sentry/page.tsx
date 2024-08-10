@@ -1,6 +1,4 @@
 "use client";
-
-import Head from "next/head";
 import * as Sentry from "@sentry/nextjs";
 import { AppNavBar } from "../_components/AppNavBar";
 
@@ -47,6 +45,7 @@ export default function Page() {
             margin: "18px",
           }}
           onClick={async () => {
+             
             await Sentry.startSpan({
               name: 'Example Frontend Span',
               op: 'test'
