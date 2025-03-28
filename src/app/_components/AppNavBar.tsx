@@ -6,7 +6,6 @@ import {
   NavbarContent,
   NavbarItem,
   Button,
-  useDisclosure,
 } from "@heroui/react";
 import {
   signOut,
@@ -15,7 +14,6 @@ import {
 import { LogIn, BookOpen, Link as AppLink, LogOut } from "react-feather";
 
 export function AppNavBar() {
-  const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const session = useSessionContext();
 
   if (session.loading) {
