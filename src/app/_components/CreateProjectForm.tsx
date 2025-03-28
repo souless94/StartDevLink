@@ -1,6 +1,6 @@
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import { Button, DatePicker, Input, Spacer, Textarea, Link } from '@nextui-org/react';
+import { Button, DatePicker, Input, Spacer, Textarea, Link } from "@heroui/react";
 import { today, getLocalTimeZone } from "@internationalized/date";
 import { api } from "~/trpc/react";
 import toast, { Toaster } from 'react-hot-toast';

@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import { Button, DatePicker, Input, Spacer, Textarea, Image, Link, useDisclosure, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, Progress } from '@nextui-org/react';
+import { Button, DatePicker, Input, Spacer, Textarea, Image, Link, useDisclosure, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader, Progress } from "@heroui/react";
 import { today, getLocalTimeZone, parseDate } from "@internationalized/date";
 import { api } from "~/trpc/react";
 import toast, { Toaster } from 'react-hot-toast';

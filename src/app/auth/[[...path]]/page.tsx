@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { redirectToAuth } from 'supertokens-auth-react';
 import SuperTokens from 'supertokens-auth-react/ui';
 import { ThirdPartyPreBuiltUI } from 'supertokens-auth-react/recipe/thirdparty/prebuiltui';
-import { Link, Navbar, NavbarBrand } from '@nextui-org/react';
+import { Link, Navbar, NavbarBrand } from "@heroui/react";
 import { Link as AppLink, LogIn } from 'react-feather';
 
 export default function Auth() {

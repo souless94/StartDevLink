@@ -1,7 +1,7 @@
 "use client"
-import { Button, Link, Spacer, Table, TableBody, TableCell, TableColumn, TableHeader, TableRow } from "@nextui-org/react";
-import { Image } from "@nextui-org/image";
-import { Check, X, Shield, Link as AppLink, BookOpen ,Codepen} from 'react-feather';
+import { Button, Link, Spacer, Table, TableBody, TableCell, TableColumn, TableHeader, TableRow } from "@heroui/react";
+import { Image } from "@heroui/image";
+import { Check, X, Shield, Link as AppLink, BookOpen ,Codepen} from "react-feather";
 
 
 export function HomePage() {

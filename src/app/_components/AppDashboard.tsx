@@ -1,4 +1,4 @@
-import { Input, Button, Link, Spacer, Card, CardBody, CardFooter, Image, Progress } from "@nextui-org/react";
+import { Input, Button, Link, Spacer, Card, CardBody, CardFooter, Image, Progress } from "@heroui/react";
 import { useState } from "react";
 import { Codepen } from "react-feather";
 import { api } from "~/trpc/react";

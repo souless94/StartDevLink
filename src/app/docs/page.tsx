@@ -1,5 +1,5 @@
 'use client'
-import { Divider } from "@nextui-org/react";
+import { Divider } from "@heroui/react";
 import { AppNavBar } from "../_components/AppNavBar";
 import { LogIn, Codepen, Edit, FileText, Search , Link as AppLink , Info} from 'react-feather';
 
